@@ -1,0 +1,32 @@
+CREATE TABLE doctors (
+    doctor_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    specialty VARCHAR(50) NOT NULL,
+    contact_number VARCHAR(15),
+    email VARCHAR(100)
+);
+
+CREATE TABLE appointments (
+    appointment_id SERIAL PRIMARY KEY,
+    patient_id INT REFERENCES patients(patient_id) ON DELETE CASCADE,
+    doctor_id INT REFERENCES doctors(doctor_id) ON DELETE CASCADE,
+    appointment_date TIMESTAMP NOT NULL,
+    status VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE medical_records (
+    record_id SERIAL PRIMARY KEY,
+    patient_id INT REFERENCES patients(patient_id) ON DELETE CASCADE,
+    date DATE NOT NULL,
+    description TEXT,
+    prescription TEXT
+);
+
+CREATE TABLE billings (
+    billing_id SERIAL PRIMARY KEY,
+    patient_id INT REFERENCES patients(patient_id) ON DELETE CASCADE,
+    amount DECIMAL(10, 2) NOT NULL,
+    billing_date DATE NOT NULL,
+    status VARCHAR(20) NOT NULL
+);
