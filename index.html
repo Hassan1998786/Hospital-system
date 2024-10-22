@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital User Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            margin: 10px 0;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        .banner {
+            background-image: url('banner.jpg'); /* Use an appropriate image */
+            height: 300px;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        .banner h1 {
+            color: white;
+            font-size: 3em;
+            margin: 0;
+        }
+        .banner button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .banner button:hover {
+            background-color: #004494;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+        .features {
+            padding: 20px;
+        }
+        .services, .doctors {
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .service, .doctor {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            width: calc(30% - 40px);
+            text-align: center;
+            flex: 1 1 calc(30% - 40px);
+            transition: box-shadow 0.3s;
+        }
+        .service:hover, .doctor:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            .banner h1 {
+                font-size: 2em;
+            }
+            .service, .doctor {
+                width: calc(45% - 40px);
+            }
+        }
+        @media (max-width: 480px) {
+            .banner h1 {
+                font-size: 1.5em;
+            }
+            .service, .doctor {
+                width: calc(100% - 40px);
+            }
+            nav a {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+        /* Modal Styles */
+        #appointmentModal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+        }
+        .modal-content button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hospital</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Services</a>
+            <a href="doctors.html">Doctors</a>
+            <a href="contact.html">Contact</a> <!-- Added link to Contact page -->
+        </nav>
+    </header>
+    <div class="banner">
+        <h1>Welcome to Hospital</h1>
+        <button onclick="openModal()">Book an Appointment</button>
+    </div>
+    <div class="content">
+        <h2>About Us</h2>
+        <p>We are committed to providing quality healthcare services to our patients.</p>
+        
+        <h2>Features</h2>
+        <ul>
+            <li>24/7 Emergency Services</li>
+            <li>Qualified Medical Staff</li>
+            <li>State-of-the-art Facilities</li>
+        </ul>
+    </div>
+    <section class="services">
+        <div class="service">Emergency Service</div>
+        <div class="service">Surgery</div>
+        <div class="service">Consultations</div>
+    </section>
+    <section class="doctors">
+        <div class="doctor">Dr. Ahmed</div>
+        <div class="doctor">Dr. Leila</div>
+        <div class="doctor">Dr. Mohammed</div>
+    </section>
+    <footer>
+        <p>Phone: 123456789</p>
+        <p>Email: contact@hospital.com</p>
+        <p>Follow us on social media</p>
+    </footer>
+
+    <!-- Modal for Appointment -->
+    <div id="appointmentModal">
+        <div class="modal-content">
+            <h3>Book an Appointment</h3>
+            <form>
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name"><br>
+                <label for="date">Date:</label><br>
+                <input type="date" id="date" name="date"><br>
+                <input type="submit" value="Submit">
+            </form>
+            <button onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('appointmentModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('appointmentModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
