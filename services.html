@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Hospital</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            margin: 10px 0;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+        .service-option {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            display: inline-block;
+            width: 200px;
+            cursor: pointer;
+            transition: box-shadow 0.3s;
+        }
+        .service-option:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hospital</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Services</a>
+            <a href="#">Doctors</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+    <div class="content">
+        <h2>Our Services</h2>
+        <div class="service-option" onclick="location.href='reception.html'">
+            <h3>Reception</h3>
+            <p>Register Patient Data</p>
+        </div>
+        <div class="service-option" onclick="location.href='admin.html'">
+            <h3>Admin</h3>
+            <p>Register Employee Data</p>
+        </div>
+    </div>
+    <footer>
+        <p>Phone: 123456789</p>
+        <p>Email: contact@hospital.com</p>
+        <p>Follow us on social media</p>
+    </footer>
+</body>
+</html>
