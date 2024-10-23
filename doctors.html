@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            margin: 10px 0;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Doctors List</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Services</a>
+            <a href="doctors.html">Doctors</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+    <div class="content">
+        <table>
+            <thead>
+                <tr>
+                    <th>Doctor Name</th>
+                    <th>Specialty</th>
+                    <th>Clinic</th>
+                    <th>Available Hours</th>
+                    <th>Contact Number</th>
+                </tr>
+            </thead>
+            <tbody id="doctorTableBody">
+                <!-- Doctor data will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Sample doctor data
+        const doctors = [
+            { name: "Dr. Ahmad", specialty: "Cardiology", clinic: "Cardiology Clinic", availableHours: "Sun-Thu: 9 AM - 5 PM", contact: "123-456-7890" },
+            { name: "Dr. Leila", specialty: "Neurology", clinic: "Neurology Clinic", availableHours: "Tue-Thu: 10 AM - 4 PM", contact: "098-765-4321" },
+            { name: "Dr. Sami", specialty: "Pediatrics", clinic: "Pediatric Clinic", availableHours: "Sun-Fri: 8 AM - 3 PM", contact: "555-123-4567" },
+            { name: "Dr. Fatima", specialty: "Orthopedics", clinic: "Orthopedic Clinic", availableHours: "Mon, Thu: 11 AM - 6 PM", contact: "321-654-9870" }
+        ];
+
+        function displayDoctors() {
+            const tableBody = document.getElementById('doctorTableBody');
+            tableBody.innerHTML = ''; // Clear existing data
+            doctors.forEach(doctor => {
+                const row = `<tr>
+                    <td>${doctor.name}</td>
+                    <td>${doctor.specialty}</td>
+                    <td>${doctor.clinic}</td>
+                    <td>${doctor.availableHours}</td>
+                    <td>${doctor.contact}</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        // Call the function to display doctors when the page loads
+        displayDoctors();
+    </script>
+</body>
+</html>
