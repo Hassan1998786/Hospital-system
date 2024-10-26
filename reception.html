@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reception - Register Patient</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            margin: 10px 0;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+        }
+        input[type="text"], input[type="date"] {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"], input[type="button"] {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover, input[type="button"]:hover {
+            background-color: #004494;
+        }
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hospital - Reception</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Services</a>
+            <a href="#">Doctors</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+    <div class="content">
+        <h2>Register Patient Data</h2>
+        <form onsubmit="return confirmSubmission()">
+            <label for="patientName">Patient Name:</label>
+            <input type="text" id="patientName" name="patientName" required>
+            
+            <label for="patientBirthdate">Date of Birth:</label>
+            <input type="date" id="patientBirthdate" name="patientBirthdate" required>
+            
+            <label for="patientContact">Contact Number:</label>
+            <input type="text" id="patientContact" name="patientContact" required>
+            
+            <input type="submit" value="Submit">
+            <input type="button" value="Cancel" onclick="resetForm()">
+        </form>
+
+        <h2>Registered Patients</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Date of Birth</th>
+                    <th>Contact Number</th>
+                    <th>Registration Date</th>
+                </tr>
+            </thead>
+            <tbody id="patientTableBody">
+                <!-- Patient data will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+    <footer>
+        <p>Phone: 123456789</p>
+        <p>Email: contact@hospital.com</p>
+        <p>Follow us on social media</p>
+    </footer>
+
+    <script>
+        const patients = JSON.parse(localStorage.getItem('patients')) || [];
+
+        function confirmSubmission() {
+            const name = document.getElementById('patientName').value;
+            const birthdate = document.getElementById('patientBirthdate').value;
+            const contact = document.getElementById('patientContact').value;
+
+            if (confirm("Are you sure you want to submit this data?")) {
+                // Add new patient to the array
+                const registrationDate = new Date().toLocaleDateString();
+                patients.push({ name, birthdate, contact, registrationDate });
+                localStorage.setItem('patients', JSON.stringify(patients));
+                displayPatients();
+                resetForm();
+                return false; // Prevent form submission
+            }
+            return false; // Prevent form submission
+        }
+
+        function displayPatients() {
+            const tableBody = document.getElementById('patientTableBody');
+            tableBody.innerHTML = ''; // Clear existing data
+            patients.forEach(patient => {
+                const row = `<tr>
+                    <td>${patient.name}</td>
+                    <td>${patient.birthdate}</td>
+                    <td>${patient.contact}</td>
+                    <td>${patient.registrationDate}</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        function resetForm() {
+            document.getElementById('patientName').value = '';
+            document.getElementById('patientBirthdate').value = '';
+            document.getElementById('patientContact').value = '';
+        }
+
+        // Call the function to display patients when the page loads
+        displayPatients();
+    </script>
+</body>
+</html>
